@@ -102,7 +102,7 @@ if __name__ == "__main__":
     if tests:
         print(f"✅ Đã tải thành công {len(tests)} Test Cases từ file của Role 1\n")
         # Chạy thử câu test số 3 (id=3, index=2) - Multi-step (Cần Tool)
-        sample_query = tests[2]["question"] 
+        sample_query = tests[4]["question"] 
     else:
         print("⚠️ Lỗi: Không tải được test_cases.json.")
         sample_query = "Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở Gia Lâm, Hà Nội."
