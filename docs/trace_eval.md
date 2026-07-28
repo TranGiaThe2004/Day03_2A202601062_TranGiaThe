@@ -7,11 +7,11 @@
 
 | Tiêu chí | Điểm (1-5) | Lý do đánh giá |
 | :--- | :---: | :--- |
-| 🧠 **Multi-step Reasoning** | `4/5` | Cần suy luận từ tra cứu thời tiết đến chọn trang phục. |
-| 🛠️ **Tool Interaction** | `5/5` | Cần tra cứu dữ liệu thời gian thực qua API thời tiết/chuyến bay. |
-| 🔀 **Dynamic Decision** | `4/5` | Kết quả bước trước quyết định hành động bước sau. |
-| ⏳ **Long Horizon** | `3/5` | Quy trình gồm 2-3 bước xử lý ngắn. |
-| **TỔNG ĐIỂM FIT** | **16/20** | **KẾT LUẬN: BÀI TOÁN RẤT NÊN DÙNG REACT AGENT!** |
+| 🧠 **Multi-step Reasoning** | `5/5` | Cần hiểu yêu cầu người dùng (ngân sách, khu vực, diện tích, nội thất, thời gian chuyển vào...), lọc nhiều kết quả, so sánh ưu nhược điểm, sau đó đề xuất lựa chọn phù hợp và lên lịch xem nhà. |
+| 🛠️ **Tool Interaction** | `5/5` | Cần gọi nhiều công cụ: API tìm nhà (hoặc database), bản đồ để tính khoảng cách, lịch (Google Calendar), gửi email/SMS/Zalo cho chủ nhà, kiểm tra lịch trống của người dùng, tóm tắt thông tin. |
+| 🔀 **Dynamic Decision** | `5/5` | Mỗi bước phụ thuộc kết quả bước trước. Nếu không có nhà phù hợp → nới điều kiện tìm kiếm; nếu chủ nhà không rảnh → tìm khung giờ khác; nếu khoảng cách quá xa → ưu tiên căn hộ khác. Workflow thay đổi động theo dữ liệu thực tế. |
+| ⏳ **Long Horizon** | `4/5` | Quy trình có thể kéo dài từ tìm kiếm → so sánh → liên hệ → đặt lịch → xác nhận → nhắc lịch → cập nhật trạng thái sau khi xem nhà. Dài hơn các agent chỉ thực hiện 2–3 bước nhưng chưa đến mức workflow nhiều ngày như trợ lý tuyển dụng. |
+| **TỔNG ĐIỂM FIT** | **19/20** | **KẾT LUẬN: BÀI TOÁN RẤT NÊN DÙNG REACT AGENT!** |
 
 ---
 
