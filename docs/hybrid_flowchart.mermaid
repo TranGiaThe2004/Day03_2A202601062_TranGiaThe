@@ -8,42 +8,42 @@ graph TD
     classDef errorNode fill:#FFEBEE,stroke:#EF5350,stroke-width:2px,color:#C62828;
 
     %% Nodes
-    Start([User Query / Yêu cầu người dùng]) :::startEnd
+    Start(["User Query / Yêu cầu người dùng"]) :::startEnd
     
     %% Decision Router
-    Router{"Phân loại yêu cầu<br>(Router/Classifier)"} :::decision
+    Router{"Phân loại yêu cầu (Router/Classifier)"} :::decision
     
     %% Chatbot Baseline Path (Simple)
-    PathSimple["Câu hỏi lý thuyết / Tư vấn chung<br>(Giấy tờ, quy định, mẹo thuê trọ, ...)"] :::pathA
-    ChatbotPath["Chatbot Path<br>(1 LLM Call - 0 Tool)"] :::pathA
+    PathSimple["Câu hỏi lý thuyết hoặc Tư vấn chung (Giấy tờ, quy định, mẹo thuê trọ, ...)"] :::pathA
+    ChatbotPath["Chatbot Path (1 LLM Call - 0 Tool)"] :::pathA
     LLMBase["Gọi LLM sinh câu trả lời dựa trên tri thức sẵn có"] :::process
-    ChatbotEnd([Trả lời trực tiếp cho người dùng]) :::startEnd
+    ChatbotEnd(["Trả lời trực tiếp cho người dùng"]) :::startEnd
 
     %% ReAct Agent Path (Complex/Actionable)
-    PathComplex["Câu hỏi cần dữ liệu thực / Hành động<br>(Tìm phòng, xem chi tiết, đặt lịch hẹn, ...)"] :::pathB
-    ReActPath["ReAct Agent Path<br>(Thought -> Action -> Observation Loop)"] :::pathB
-    InitStep["Khởi tạo: Step = 0<br>Khởi tạo lịch sử chat (Context Window)"] :::process
+    PathComplex["Câu hỏi cần dữ liệu thực hoặc Hành động (Tìm phòng, xem chi tiết, đặt lịch hẹn, ...)"] :::pathB
+    ReActPath["ReAct Agent Path (Thought -> Action -> Observation Loop)"] :::pathB
+    InitStep["Khởi tạo: Step = 0 và Khởi tạo lịch sử chat (Context Window)"] :::process
     
     %% ReAct Loop
-    LoopCheck{"Step < MAX_ITERATIONS?"} :::decision
+    LoopCheck{"Kiểm tra: Step < MAX_ITERATIONS?"} :::decision
     LLMReact["Gọi LLM phân tích lịch sử hội thoại"] :::process
     CheckOutput{"LLM trả về kết quả gì?"} :::decision
     
     %% Action Branch
-    ActionNode["Action: Tên công cụ + Tham số<br>(VD: search_rentals, get_rental_details, book_viewing)"] :::process
-    ExecTool["Thực thi tool & lấy kết quả (Observation)"] :::process
-    UpdateContext["Nạp Observation vào lịch sử chat<br>Step = Step + 1"] :::process
+    ActionNode["Action: Tên công cụ + Tham số (VD: search_rentals, get_rental_details, book_viewing)"] :::process
+    ExecTool["Thực thi tool và lấy kết quả (Observation)"] :::process
+    UpdateContext["Nạp Observation vào lịch sử chat và Step = Step + 1"] :::process
     
     %% Final Answer Branch
-    FinalNode["Final Answer:<br>Câu trả lời cuối cùng cho người dùng"] :::process
-    ReActSuccess([Trả kết quả chi tiết cho người dùng]) :::startEnd
+    FinalNode["Final Answer: Câu trả lời cuối cùng cho người dùng"] :::process
+    ReActSuccess(["Trả kết quả chi tiết cho người dùng"]) :::startEnd
     
     %% No Action / Format Error Branch
-    FormatError["Cảnh báo: Thiếu Action hoặc Final Answer<br>Tự động nhắc nhở LLM sửa lỗi"] :::errorNode
+    FormatError["Cảnh báo: Thiếu Action hoặc Final Answer (LLM tự sửa lỗi)"] :::errorNode
     
     %% Guardrail Branch
-    GuardrailNode["Đạt giới hạn MAX_ITERATIONS<br>(Guardrail được kích hoạt)"] :::errorNode
-    PoliteMsg["Ngắt lặp an toàn<br>Trả lời lịch sự / Yêu cầu thêm thông tin"] :::process
+    GuardrailNode["Đạt giới hạn MAX_ITERATIONS (Guardrail được kích hoạt)"] :::errorNode
+    PoliteMsg["Ngắt lặp an toàn: Trả lời lịch sự và yêu cầu thêm thông tin"] :::process
 
     %% Flow lines
     Start --> Router
