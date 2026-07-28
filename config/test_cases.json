@@ -2,31 +2,31 @@
   {
     "id": 1,
     "category": "🟢 Đơn giản (Chỉ cần LLM)",
-    "question": "Thủ đô của Việt Nam là gì?",
-    "expected_behavior": "Chatbot trả lời trực tiếp từ kiến thức có sẵn."
+    "question": "Lần đầu thuê phòng trọ, tôi cần chuẩn bị những giấy tờ gì?",
+    "expected_behavior": "Chatbot trả lời trực tiếp từ kiến thức có sẵn (CMND/CCCD, hợp đồng thuê, tiền cọc, sổ hộ khẩu nếu chủ yêu cầu...). Không cần gọi tool."
   },
   {
     "id": 2,
     "category": "🟢 Đơn giản (Chỉ cần LLM)",
-    "question": "Nêu 3 lời khuyên để học tốt lập trình.",
-    "expected_behavior": "Chatbot trả lời trực tiếp từ kiến thức có sẵn."
+    "question": "Tiền cọc phòng trọ ở Việt Nam thường bằng bao nhiêu tháng tiền nhà?",
+    "expected_behavior": "Chatbot trả lời trực tiếp từ kiến thức chung (thường 1–2 tháng tiền phòng, có thể thêm tiền điện nước). Không cần gọi tool."
   },
   {
     "id": 3,
     "category": "🟡 Multi-step (Cần Tool)",
-    "question": "Thời tiết ở Hà Nội hôm nay thế nào và tôi nên mặc gì đi chơi?",
-    "expected_behavior": "Agent gọi tool get_weather('Hà Nội') rồi suy luận trang phục."
+    "question": "Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở quận Cầu Giấy, Hà Nội.",
+    "expected_behavior": "Agent gọi search_rentals(location='Cầu Giấy', max_price=4000000, property_type='phòng trọ'), rồi tổng hợp danh sách kết quả có giá và mã phòng."
   },
   {
     "id": 4,
     "category": "🟡 Multi-step (Cần gọi 2 Tools)",
-    "question": "Kiểm tra vé máy bay từ TP.HCM đi Hà Nội ngày mai và dự báo thời tiết ở Hà Nội.",
-    "expected_behavior": "Agent gọi tool search_flights và get_weather để trả lời đầy đủ."
+    "question": "Tìm căn hộ cho thuê ở quận Đống Đa dưới 8 triệu/tháng, sau đó đặt lịch xem phòng mã CH002 vào thứ 7 tuần này lúc 10:00, tên liên hệ Trần Minh Đức.",
+    "expected_behavior": "Agent gọi search_rentals(location='Đống Đa', max_price=8000000, property_type='căn hộ') để xác nhận phòng CH002 tồn tại, rồi gọi book_viewing(listing_id='CH002', date='thứ 7 tuần này', time='10:00', contact_name='Trần Minh Đức') và báo kết quả đặt lịch."
   },
   {
     "id": 5,
     "category": "🔴 Edge Case (Bẫy Guardrail)",
-    "question": "Tra cứu thời tiết ở thành phố Atlantis ngày 32/13/2026.",
-    "expected_behavior": "Tool báo lỗi tham số/thất bại, Guardrail ngắt sau 3 bước và trả về thông báo lịch sự."
+    "question": "Đặt lịch xem phòng trọ mã XYZ999 ở thành phố Atlantis vào ngày 32/13/2026 lúc 25:99.",
+    "expected_behavior": "Tool báo lỗi (mã phòng không tồn tại / địa điểm không hợp lệ / ngày giờ sai định dạng). Agent không bịa kết quả đặt lịch thành công. Guardrail ngắt sau MAX_ITERATIONS và trả thông báo lịch sự."
   }
 ]
