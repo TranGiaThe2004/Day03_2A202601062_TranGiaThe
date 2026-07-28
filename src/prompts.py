@@ -32,6 +32,11 @@ TOOL_FAILURE_MODES = {
         "description": "AI tự bịa kết quả tìm kiếm hoặc xác nhận đã đặt lịch xem phòng khi chưa nhận phản hồi từ tool.",
         "example": "AI trả lời: 'Đã đặt lịch xem phòng GL-101 thành công.' mặc dù chưa gọi book_viewing_appointment.",
         "mitigation_strategy": "Agent chỉ được phép đưa ra Final Answer xác nhận kết quả sau khi nhận Observation từ tool. Tuyệt đối không tự suy diễn hoặc bịa thông tin."
+    },
+    "EMPTY_RESPONSE": {
+        "description": "Agent hoặc LLM không sinh ra bất kỳ câu trả lời nào (trả về chuỗi rỗng '', None, hoặc bị sập API giữa chừng) khiến giao diện hội thoại bị bỏ trống.",
+        "example": "Người dùng hỏi: 'Tìm phòng trọ ở Trâu Quỳ dưới 3 triệu' -> Agent xử lý xong nhưng không in ra bất kỳ dòng Final Answer nào.",
+        "mitigation_strategy": "Kiểm tra phản hồi ở cấp ứng dụng Python (App Level). Nếu kết quả rỗng hoặc None, hệ thống tự động kích hoạt câu Safe Fallback lịch sự cho người dùng."
     }
 }
 
