@@ -1,5 +1,5 @@
 # 📊 BÁO CÁO GIÁM SÁT & ĐÁNH GIÁ (OBSERVABILITY TRACE LOGS)
-*Dành cho Role 5: Observability & Reviewer*
+*Dành cho Role 5A: Trace Analyst & Observability*
 
 ---
 
