@@ -31,7 +31,7 @@ Tất cả dữ liệu tin đăng và lịch hẹn phải lấy từ **hệ th�
 | Tình huống | Chatbot (Cấp 2) | ReAct Agent (Cấp 3) |
 | :--- | :--- | :--- |
 | "Cần giấy tờ gì khi thuê trọ?" | Trả lời từ kiến thức LLM | Cũng OK — **không cần tool** |
-| "Tìm phòng dưới 4 triệu ở Cầu Giấy" | Dễ bịa danh sách phòng | Gọi `search_rentals` → có mã phòng, giá thật |
+| "Tìm phòng dưới 4 triệu ở Gia Lâm" | Dễ bịa danh sách phòng | Gọi `search_rentals` → có mã phòng, giá thật |
 | "Tìm căn hộ rồi đặt lịch xem CH002" | Có thể giả vờ đặt lịch thành công | `search_rentals` → `book_viewing` → xác nhận lịch hẹn |
 | Mã phòng / địa điểm / ngày giờ vô lý | Có thể bịa "đã đặt thành công" | Tool báo lỗi → Guardrail dừng an toàn |
 
@@ -72,10 +72,10 @@ search_rentals(location: str, max_price: int, property_type: str = None) -> str
 
 | Mã | Khu vực | Loại | Giá |
 | :--- | :--- | :--- | :--- |
-| PT001 | Cầu Giấy | Phòng trọ | 3.200.000 VNĐ/tháng |
-| PT002 | Cầu Giấy | Phòng trọ | 3.800.000 VNĐ/tháng |
-| CH001 | Đống Đa | Căn hộ | 7.500.000 VNĐ/tháng |
-| CH002 | Đống Đa | Căn hộ | 6.800.000 VNĐ/tháng |
+| PT001 | Gia Lâm | Phòng trọ | 3.200.000 VNĐ/tháng |
+| PT002 | Gia Lâm | Phòng trọ | 3.800.000 VNĐ/tháng |
+| CH001 | Gia Lâm | Căn hộ | 7.500.000 VNĐ/tháng |
+| CH002 | Gia Lâm | Căn hộ | 6.800.000 VNĐ/tháng |
 
 ### 3.2. `get_rental_details`
 
@@ -145,14 +145,14 @@ Role 3 cần xử lý trong `src/prompts.py` và guardrails:
 
 ### Test Case #3 — Multi-step (1 tool)
 
-- **Câu hỏi:** *"Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở quận Cầu Giấy, Hà Nội."*
-- **Kỳ vọng:** Agent gọi `search_rentals(location='Cầu Giấy', max_price=4000000, property_type='phòng trọ')`, tổng hợp danh sách có mã phòng và giá.
+- **Câu hỏi:** *"Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở Gia Lâm, Hà Nội."*
+- **Kỳ vọng:** Agent gọi `search_rentals(location='Gia Lâm', max_price=4000000, property_type='phòng trọ')`, tổng hợp danh sách có mã phòng và giá.
 
 ### Test Case #4 — Multi-step (2 tools)
 
-- **Câu hỏi:** *"Tìm căn hộ cho thuê ở quận Đống Đa dưới 8 triệu/tháng, sau đó đặt lịch xem phòng mã CH002 vào thứ 7 tuần này lúc 10:00, tên liên hệ Trần Minh Đức."*
+- **Câu hỏi:** *"Tìm căn hộ cho thuê ở Gia Lâm dưới 8 triệu/tháng, sau đó đặt lịch xem phòng mã CH002 vào thứ 7 tuần này lúc 10:00, tên liên hệ Trần Minh Đức."*
 - **Kỳ vọng:**
-  1. `search_rentals(location='Đống Đa', max_price=8000000, property_type='căn hộ')`
+  1. `search_rentals(location='Gia Lâm', max_price=8000000, property_type='căn hộ')`
   2. `book_viewing(listing_id='CH002', date='thứ 7 tuần này', time='10:00', contact_name='Trần Minh Đức')`
   3. Báo kết quả đặt lịch cho người dùng.
 

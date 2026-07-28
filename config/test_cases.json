@@ -14,14 +14,14 @@
   {
     "id": 3,
     "category": "🟡 Multi-step (Cần Tool)",
-    "question": "Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở quận Cầu Giấy, Hà Nội.",
-    "expected_behavior": "Agent gọi search_rentals(location='Cầu Giấy', max_price=4000000, property_type='phòng trọ'), rồi tổng hợp danh sách kết quả có giá và mã phòng."
+    "question": "Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở Gia Lâm, Hà Nội.",
+    "expected_behavior": "Agent gọi search_rentals(location='Gia Lâm', max_price=4000000, property_type='phòng trọ'), rồi tổng hợp danh sách kết quả có giá và mã phòng."
   },
   {
     "id": 4,
     "category": "🟡 Multi-step (Cần gọi 2 Tools)",
-    "question": "Tìm căn hộ cho thuê ở quận Đống Đa dưới 8 triệu/tháng, sau đó đặt lịch xem phòng mã CH002 vào thứ 7 tuần này lúc 10:00, tên liên hệ Trần Minh Đức.",
-    "expected_behavior": "Agent gọi search_rentals(location='Đống Đa', max_price=8000000, property_type='căn hộ') để xác nhận phòng CH002 tồn tại, rồi gọi book_viewing(listing_id='CH002', date='thứ 7 tuần này', time='10:00', contact_name='Trần Minh Đức') và báo kết quả đặt lịch."
+    "question": "Tìm căn hộ cho thuê ở Gia Lâm dưới 8 triệu/tháng, sau đó đặt lịch xem phòng mã CH002 vào thứ 7 tuần này lúc 10:00, tên liên hệ Trần Minh Đức.",
+    "expected_behavior": "Agent gọi search_rentals(location='Gia Lâm', max_price=8000000, property_type='căn hộ') để xác nhận phòng CH002 tồn tại, rồi gọi book_viewing(listing_id='CH002', date='thứ 7 tuần này', time='10:00', contact_name='Trần Minh Đức') và báo kết quả đặt lịch."
   },
   {
     "id": 5,

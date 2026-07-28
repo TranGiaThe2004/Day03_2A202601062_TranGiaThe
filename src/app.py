@@ -71,16 +71,16 @@ def run_react_agent(user_query: str, provider):
         
         # GIẢ LẬP LOGIC CỦA AGENT CHO ĐÚNG ĐỀ TÀI TÌM NHÀ TRỌ (Sẽ nối LLM thật ở Mốc 3)
         if step == 1:
-            print("🧠 Thought: Khách cần tìm phòng trọ dưới 4 triệu ở Cầu Giấy. Tôi sẽ gọi tool search_rentals.")
-            print("🛠️ Action: search_rentals(location='Cau Giay', max_price=4000000, property_type='phong tro')")
+            print("🧠 Thought: Khách cần tìm phòng trọ dưới 4 triệu ở Gia Lâm. Tôi sẽ gọi tool search_rentals.")
+            print("🛠️ Action: search_rentals(location='Gia Lam', max_price=4000000, property_type='phong tro')")
             
             # Gọi thẳng tool thật từ file tools.py của Role 2 (bạn Kiệt) để minh họa
-            obs = AVAILABLE_TOOLS["search_rentals"](location="Cau Giay", max_price=4000000, property_type="phong tro")
+            obs = AVAILABLE_TOOLS["search_rentals"](location="Gia Lam", max_price=4000000, property_type="phong tro")
             print(f"👁️ Observation:\n{obs}")
             
         elif step == 2:
             print("🧠 Thought: Tôi đã có danh sách 2 phòng phù hợp. Giờ tôi sẽ báo lại cho khách.")
-            print("🏁 Final Answer: Chào bạn, tôi tìm thấy 2 phòng trọ ở Cầu Giấy phù hợp với ngân sách dưới 4 triệu của bạn (Mã PT001 giá 3.5tr và Mã PT003 giá 3.8tr). Bạn muốn xem chi tiết mã phòng nào không?")
+            print("🏁 Final Answer: Chào bạn, tôi tìm thấy 2 phòng trọ ở Gia Lâm phù hợp với ngân sách dưới 4 triệu của bạn (Mã PT001 giá 3.5tr và Mã PT003 giá 3.8tr). Bạn muốn xem chi tiết mã phòng nào không?")
             break
             
     if step >= MAX_ITERATIONS:
@@ -105,7 +105,7 @@ if __name__ == "__main__":
         sample_query = tests[2]["question"] 
     else:
         print("⚠️ Lỗi: Không tải được test_cases.json.")
-        sample_query = "Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở quận Cầu Giấy, Hà Nội."
+        sample_query = "Tìm giúp tôi phòng trọ dưới 4 triệu/tháng ở Gia Lâm, Hà Nội."
     
     print("--- DEMO 1: CHẠY TRÊN CHATBOT BASELINE (MỐC 2) ---")
     run_baseline_chatbot(sample_query, provider)

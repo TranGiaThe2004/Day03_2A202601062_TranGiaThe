@@ -14,9 +14,9 @@ RENTAL_LISTINGS = [
     {
         "id": "PT001",
         "property_type": "phong tro",
-        "location": "Cau Giay",
+        "location": "Gia Lam",
         "price": 3500000,
-        "address": "Ngo 68 Xuan Thuy, Cau Giay, Ha Noi",
+        "address": "Ngo 68 Xuan Thuy, Gia Lam, Ha Noi",
         "area_m2": 22,
         "deposit_months": 1,
         "amenities": ["gac xep", "dieu hoa", "wifi", "cho de xe"],
@@ -26,9 +26,9 @@ RENTAL_LISTINGS = [
     {
         "id": "PT002",
         "property_type": "phong tro",
-        "location": "Cau Giay",
+        "location": "Gia Lam",
         "price": 4200000,
-        "address": "Ngo 123 Tran Duy Hung, Cau Giay, Ha Noi",
+        "address": "Ngo 123 Tran Duy Hung, Gia Lam, Ha Noi",
         "area_m2": 25,
         "deposit_months": 1,
         "amenities": ["dieu hoa", "ban cong", "may giat chung"],
@@ -38,9 +38,9 @@ RENTAL_LISTINGS = [
     {
         "id": "PT003",
         "property_type": "phong tro",
-        "location": "Cau Giay",
+        "location": "Gia Lam",
         "price": 3800000,
-        "address": "Pho Dich Vong Hau, Cau Giay, Ha Noi",
+        "address": "Pho Dich Vong Hau, Gia Lam, Ha Noi",
         "area_m2": 20,
         "deposit_months": 1,
         "amenities": ["wifi", "tu lanh", "khep kin"],
@@ -50,9 +50,9 @@ RENTAL_LISTINGS = [
     {
         "id": "CH001",
         "property_type": "can ho",
-        "location": "Dong Da",
+        "location": "Gia Lam",
         "price": 8500000,
-        "address": "Pho Thai Ha, Dong Da, Ha Noi",
+        "address": "Pho Thai Ha, Gia Lam, Ha Noi",
         "area_m2": 48,
         "deposit_months": 2,
         "amenities": ["1 phong ngu", "may giat", "bep rieng", "bao ve"],
@@ -62,9 +62,9 @@ RENTAL_LISTINGS = [
     {
         "id": "CH002",
         "property_type": "can ho",
-        "location": "Dong Da",
+        "location": "Gia Lam",
         "price": 7500000,
-        "address": "Pho Chua Boc, Dong Da, Ha Noi",
+        "address": "Pho Chua Boc, Gia Lam, Ha Noi",
         "area_m2": 45,
         "deposit_months": 1,
         "amenities": ["1 phong ngu", "ban cong", "may giat", "gan truong dai hoc"],
@@ -74,9 +74,9 @@ RENTAL_LISTINGS = [
     {
         "id": "CH003",
         "property_type": "can ho",
-        "location": "Thanh Xuan",
+        "location": "Gia Lam",
         "price": 6800000,
-        "address": "Pho Nguyen Trai, Thanh Xuan, Ha Noi",
+        "address": "Pho Nguyen Trai, Gia Lam, Ha Noi",
         "area_m2": 38,
         "deposit_months": 1,
         "amenities": ["studio", "thang may", "bep rieng"],
@@ -123,7 +123,7 @@ def search_rentals(location: str, max_price: int, property_type: str) -> str:
     Search rental listings by location, maximum monthly price, and property type.
 
     Args:
-        location (str): District/area, for example "Cau Giay" or "Dong Da".
+        location (str): District/area, for example "Gia Lam".
         max_price (int): Maximum monthly rent in VND.
         property_type (str): "phong tro" or "can ho".
 
