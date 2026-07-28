@@ -6,14 +6,14 @@
 
 ## 👥 1. BẢNG PHÂN VAI & FILE ĐẢM NHẬN
 
-| Vai trò (Role)                               | File đảm nhận           | Nhiệm vụ chính                                                                                          | Người đảm nhận  |
-| :-------------------------------------------- | :------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------- |
-| **Role 1: Product Architect**           | `config/test_cases.json` | Định hướng bài toán & soạn bộ câu test case                                                       | `________________` |
-| **Role 2: Tool Engineer**               | `src/tools.py`           | Định nghĩa các công cụ (Tools) cho Agent                                                             | `________________` |
-| **Role 3: Prompt Engineer**             | `src/prompts.py`         | Viết ReAct System Prompt & phanh Guardrails                                                               | `________________` |
-| **Role 4: Core Developer / Integrator** | `src/app.py`             | **Đầu mối kéo code/file của nhóm (`git pull`), Vibe Code lắp ráp thành App hoàn chỉnh** | `________________` |
-| **Role 5A: Trace Analyst**              | `docs/trace_eval.md`     | Lập bảng Scoring Matrix & Soi nhật ký Trace Log                                                        | `________________` |
-| **Role 5B: Flowchart Architect**        | `docs/hybrid_flowchart.mermaid` | Vẽ sơ đồ Hybrid Flowchart thể hiện phân luồng chatbot/agent                                            | `________________` |
+| Vai trò (Role)                               | File đảm nhận                  | Nhiệm vụ chính                                                                                          | Người đảm nhận       |
+| :-------------------------------------------- | :-------------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------------ |
+| **Role 1: Product Architect**           | `config/test_cases.json`        | Định hướng bài toán & soạn bộ câu test case                                                       | `________Đức________` |
+| **Role 2: Tool Engineer**               | `src/tools.py`                  | Định nghĩa các công cụ (Tools) cho Agent                                                             | `_______Kiệt_________` |
+| **Role 3: Prompt Engineer**             | `src/prompts.py`                | Viết ReAct System Prompt & phanh Guardrails                                                               | `______Quân__________` |
+| **Role 4: Core Developer / Integrator** | `src/app.py`                    | **Đầu mối kéo code/file của nhóm (`git pull`), Vibe Code lắp ráp thành App hoàn chỉnh** | `________Thế________`  |
+| **Role 5A: Trace Analyst**              | `docs/trace_eval.md`            | Lập bảng Scoring Matrix & Soi nhật ký Trace Log                                                        | `______Vinh_________`   |
+| **Role 5B: Flowchart Architect**        | `docs/hybrid_flowchart.mermaid` | Vẽ sơ đồ Hybrid Flowchart thể hiện phân luồng chatbot/agent                                        | `________Huy________`   |
 
 > 🌟 **VAI TRÒ NÒNG NỐT CỦA ROLE 4 (ĐẦU MỐI LẮP RÁP APP HOÀN CHỈNH)**:
 >
