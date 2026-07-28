@@ -19,7 +19,7 @@ requiredTools: ["Python 3.10+", "pip", "VS Code hoặc Editor bất kỳ", "Git"
 commonErrors: ["Nhúng sẵn kết quả tool vào system prompt của chatbot baseline", "Để model tự bịa Observation thay vì application chèn kết quả tool thực tế", "Không có max_iterations khiến agent lặp vô hạn", "Commit API key hoặc PII vào repo"]
 requiresSubmission: true
 ---
-# Lab 03 — Chatbot vs ReAct Agent 
+# Lab 03 — Chatbot vs ReAct Agent
 
 **AI Agent · Day 3 · ~240 phút****VinUni AI Codelab × GDGoC · Cập nhật 2026-07-27**
 
@@ -31,12 +31,12 @@ Câu hỏi trọng tâm xuyên suốt Lab:
 
 ### 🧩 4 Cấp Độ Tiến Hóa Của AI Hội Thoại (From Rule-Based to Autonomous Agent)
 
-| Cấp độ | Loại hệ thống | Cách hoạt động | Đánh giá & Ứng dụng trong Bài Lab |
-| :---: | :--- | :--- | :--- |
-| **Cấp 1** | **Rule-Based Bot** | Khớp từ khóa if/else cố định | Nhanh nhưng cứng nhắc, không có LLM (*Lịch sử*) |
-| **Cấp 2** | **LLM Chatbot** | Dùng LLM sinh text mượt mà | Trả lời tự nhiên nhưng không có tool ➔ **Chatbot Baseline** |
-| **Cấp 3** | **Reactive Agent** | Vòng lặp `Thought -> Action -> Observation` | Gọi tool thực tế, trích xuất dữ liệu ➔ **ReAct Agent (Trọng tâm)** |
-| **Cấp 4** | **Autonomous Agent** | Tự chia nhỏ mục tiêu (Planning) + Bộ nhớ (Memory) | Giải quyết bài toán dài hạn ➔ 🎁 **Phần Bonus Nâng cao (+10%)** |
+|    Cấp độ    | Loại hệ thống           | Cách hoạt động                                      | Đánh giá & Ứng dụng trong Bài Lab                                           |
+| :--------------: | :------------------------- | :------------------------------------------------------ | :-------------------------------------------------------------------------------- |
+| **Cấp 1** | **Rule-Based Bot**   | Khớp từ khóa if/else cố định                      | Nhanh nhưng cứng nhắc, không có LLM (*Lịch sử*)                          |
+| **Cấp 2** | **LLM Chatbot**      | Dùng LLM sinh text mượt mà                          | Trả lời tự nhiên nhưng không có tool ➔**Chatbot Baseline**          |
+| **Cấp 3** | **Reactive Agent**   | Vòng lặp`Thought -> Action -> Observation`          | Gọi tool thực tế, trích xuất dữ liệu ➔**ReAct Agent (Trọng tâm)** |
+| **Cấp 4** | **Autonomous Agent** | Tự chia nhỏ mục tiêu (Planning) + Bộ nhớ (Memory) | Giải quyết bài toán dài hạn ➔ 🎁**Phần Bonus Nâng cao (+10%)**     |
 
 ---
 

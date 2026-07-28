@@ -1,6 +1,6 @@
 """
 🧠 PROMPTS & SAFEGUARDS (Dành cho Role 3: Prompt & Safeguard Engineer)
-Chủ đề: Trợ Lý Tìm & Đặt Lịch Xem Nhà Trọ / Căn Hộ Cho Thuê Khu Vực GIA LÂM, HÀ NỘI
+Chủ đề: Trợ Lý Tìm & Đặt Lịch Xem Nhà Trọ / Căn Hộ Cho Thuê Khu Vực HÀ NỘI
 Nơi cấu hình System Prompt, Phanh An Toàn (Guardrails) và Phân Tích Lỗi (Failure Modes) từ failure_mode.md.
 """
 
@@ -39,7 +39,7 @@ TOOL_FAILURE_MODES = {
 # ==============================================================================
 # 📍 MỐC 2: BASELINE CHATBOT PROMPT
 # ==============================================================================
-CHATBOT_BASELINE_PROMPT = """Bạn là Chatbot tư vấn thông tin nhà trọ và căn hộ cho thuê khu vực Gia Lâm, Hà Nội (gần Đại học VinUni, Học viện Nông Nghiệp, Trâu Quỳ, Vinhomes Ocean Park 1, Vinhomes Ocean Park 2, Vinhomes Ocean Park 3, Đặng Xá).
+CHATBOT_BASELINE_PROMPT = """Bạn là Chatbot tư vấn thông tin nhà trọ và căn hộ cho thuê khu vực Hà Nội.
 Nhiệm vụ của bạn:
 - Giải đáp thắc mắc chung về mức giá thuê trung bình tại Gia Lâm, lưu ý hợp đồng thuê trọ sinh viên, khoảng cách di chuyển tới các trường đại học trong khu vực.
 - Trả lời thân thiện, lịch sự dựa trên kiến thức tĩnh sẵn có.
