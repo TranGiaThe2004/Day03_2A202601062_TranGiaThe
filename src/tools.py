@@ -48,6 +48,42 @@ RENTAL_LISTINGS = [
         "viewing_slots": [],
     },
     {
+        "id": "PT004",
+        "property_type": "phong tro",
+        "location": "Trau Quy",
+        "price": 3300000,
+        "address": "Duong Nguyen Van Cu, Trau Quy, Gia Lam",
+        "area_m2": 18,
+        "deposit_months": 1,
+        "amenities": ["wifi", "dieu hoa", "ban cong"],
+        "available": True,
+        "viewing_slots": ["thu 6 tuan nay 19:00", "chu nhat tuan nay 08:30"],
+    },
+    {
+        "id": "PT005",
+        "property_type": "phong tro",
+        "location": "Dương Xá",
+        "price": 4500000,
+        "address": "Nguyen Trai, Duong Xa, Gia Lam",
+        "area_m2": 24,
+        "deposit_months": 1,
+        "amenities": ["wifi", "may giat chung", "gac xep", "dieu hoa"],
+        "available": True,
+        "viewing_slots": ["thu 7 tuan nay 13:30", "thu 7 tuan nay 17:00"],
+    },
+    {
+        "id": "PT006",
+        "property_type": "phong tro",
+        "location": "Cổ Bi",
+        "price": 4700000,
+        "address": "Vo Nguyen Giap, Co Bi, Gia Lam",
+        "area_m2": 26,
+        "deposit_months": 1,
+        "amenities": ["wifi", "ban cong", "cho de xe", "dieu hoa"],
+        "available": True,
+        "viewing_slots": ["thu 6 tuan nay 16:00", "chu nhat tuan nay 11:00"],
+    },
+    {
         "id": "CH001",
         "property_type": "can ho",
         "location": "Gia Lam",
@@ -82,6 +118,42 @@ RENTAL_LISTINGS = [
         "amenities": ["studio", "thang may", "bep rieng"],
         "available": True,
         "viewing_slots": ["thu 6 tuan nay 18:00", "thu 7 tuan nay 13:00"],
+    },
+    {
+        "id": "CH004",
+        "property_type": "can ho",
+        "location": "Vinhomes Ocean Park 1",
+        "price": 9200000,
+        "address": "Khu do thi Vinhomes Ocean Park, Gia Lam",
+        "area_m2": 55,
+        "deposit_months": 2,
+        "amenities": ["2 phong ngu", "bep rieng", "may giat", "ban cong", "bao ve"],
+        "available": True,
+        "viewing_slots": ["thu 7 tuan nay 11:30", "chu nhat tuan nay 14:00"],
+    },
+    {
+        "id": "CH005",
+        "property_type": "can ho",
+        "location": "Đặng Xá",
+        "price": 7800000,
+        "address": "Dinh Cong, Dang Xa, Gia Lam",
+        "area_m2": 42,
+        "deposit_months": 1,
+        "amenities": ["1 phong ngu", "wifi", "bep rieng", "gan truong dai hoc"],
+        "available": False,
+        "viewing_slots": [],
+    },
+    {
+        "id": "CH006",
+        "property_type": "can ho",
+        "location": "Trâu Quý",
+        "price": 7100000,
+        "address": "Phan Van Tru, Trau Quy, Gia Lam",
+        "area_m2": 40,
+        "deposit_months": 1,
+        "amenities": ["studio", "wifi", "may giat", "thang may"],
+        "available": True,
+        "viewing_slots": ["thu 7 tuan nay 09:30", "thu 7 tuan nay 16:30"],
     },
 ]
 
@@ -118,50 +190,93 @@ def _format_listing_summary(listing: dict) -> str:
     )
 
 
-def search_rentals(location: str, max_price: int, property_type: str) -> str:
+def _matches_amenities(listing: dict, amenities) -> bool:
+    if not amenities:
+        return True
+
+    if isinstance(amenities, str):
+        requested = [amenities]
+    else:
+        requested = list(amenities)
+
+    requested_normalized = {
+        _normalize_text(item) for item in requested if str(item or "").strip()
+    }
+    if not requested_normalized:
+        return True
+
+    listing_amenities = {_normalize_text(item) for item in listing.get("amenities", [])}
+    return requested_normalized.issubset(listing_amenities)
+
+
+def search_rentals(
+    location: str,
+    max_price: int | None = None,
+    property_type: str | None = None,
+    min_area: int | None = None,
+    amenities=None,
+) -> str:
     """
-    Search rental listings by location, maximum monthly price, and property type.
+    Search rental listings by location, maximum monthly price, property type,
+    minimum area, and required amenities.
 
     Args:
         location (str): District/area, for example "Gia Lam".
-        max_price (int): Maximum monthly rent in VND.
-        property_type (str): "phong tro" or "can ho".
+        max_price (int | None): Maximum monthly rent in VND. If omitted, no price limit is applied.
+        property_type (str | None): "phong tro" or "can ho". If omitted, all types are included.
+        min_area (int | None): Minimum usable area in m2.
+        amenities (str | list[str] | None): Required amenities, for example "wifi" or ["wifi", "dieu hoa"].
 
     Returns:
         str: Matching listings with id, price, address, area, status, and amenities.
         On invalid input or no result, returns a string beginning with "LOI:".
     """
-    try:
-        max_price = int(max_price)
-    except (TypeError, ValueError):
-        return "LOI: max_price phai la so tien VND hop le."
+    if max_price is not None:
+        try:
+            max_price = int(max_price)
+        except (TypeError, ValueError):
+            return "LOI: max_price phai la so tien VND hop le."
+        if max_price <= 0:
+            return "LOI: max_price phai lon hon 0."
+
+    if min_area is not None:
+        try:
+            min_area = int(min_area)
+        except (TypeError, ValueError):
+            return "LOI: min_area phai la so nguyen hop le."
+        if min_area <= 0:
+            return "LOI: min_area phai lon hon 0."
 
     if not _normalize_text(location):
         return "LOI: location khong duoc de trong."
-    if max_price <= 0:
-        return "LOI: max_price phai lon hon 0."
-    if not _normalize_text(property_type):
-        return "LOI: property_type khong duoc de trong."
 
     target_location = _normalize_text(location)
-    target_type = _normalize_text(property_type)
+    target_type = _normalize_text(property_type) if property_type else None
 
     matches = [
         listing
         for listing in RENTAL_LISTINGS
-        if target_location in _normalize_text(listing["location"])
-        and target_type in _normalize_text(listing["property_type"])
-        and listing["price"] <= max_price
+        if (
+            target_location in _normalize_text(listing["location"])
+            and (target_type is None or target_type in _normalize_text(listing["property_type"]))
+            and (max_price is None or listing["price"] <= max_price)
+            and (min_area is None or listing["area_m2"] >= min_area)
+            and _matches_amenities(listing, amenities)
+        )
     ]
 
     if not matches:
+        if max_price is None:
+            price_clause = "khong gioi han ve gia"
+        else:
+            price_clause = f"ngan sach {_format_price(max_price)}"
         return (
             "LOI: Khong tim thay listing phu hop voi "
-            f"khu vuc '{location}', loai '{property_type}', ngan sach {_format_price(max_price)}."
+            f"khu vuc '{location}', loai '{property_type or 'tat ca'}', {price_clause}."
         )
 
     lines = [
-        f"Tim thay {len(matches)} listing phu hop voi ngan sach {_format_price(max_price)}:"
+        f"Tim thay {len(matches)} listing phu hop:"
     ]
     lines.extend(_format_listing_summary(listing) for listing in matches)
     return "\n".join(lines)
